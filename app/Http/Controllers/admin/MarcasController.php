@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\models\Marca;
 
 class MarcasController extends Controller
 {
@@ -14,7 +15,12 @@ class MarcasController extends Controller
      */
     public function index()
     {
-        return view('admin.marcas.marcas_list');
+        $marcas = Marca::all();
+        $params = [
+            'title' => 'Brands Listing',
+            'marcas' => $marcas,
+        ];
+        return view('admin.marcas.marcas_list')->with($params);
     }
 
     /**
@@ -57,7 +63,12 @@ class MarcasController extends Controller
      */
     public function edit($id)
     {
-         return view('admin.marcas.marcas_edit');
+        $marca = Marca::find($id);
+        $params = [
+            'title' => 'Edit Brand',
+            'marca' => $marca,
+        ];
+        return view('admin.marcas.marcas_edit')->with($params);
     }
 
     /**
