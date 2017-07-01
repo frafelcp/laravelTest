@@ -14,3 +14,15 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+//rutas productos
+Route::resource('almacen/productos', 'ProductoController');
+Route::post('almacen/productos/search', ['as'=>'almacen/productos/search', 'uses'=>'ProductoController@search']);
+
+//rutas impuestos
+Route::resource('configuracion/impuestos', 'ImpuestoController');
+Route::post('configuracion/impuestos/search', ['as'=>'configuracion/impuestos/search', 'uses'=>'ImpuestoController@search']);
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

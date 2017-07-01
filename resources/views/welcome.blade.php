@@ -73,6 +73,7 @@
                     @else
                         <a href="{{ url('/login') }}">Login</a>
                         <a href="{{ url('/register') }}">Register</a>
+                        <a href="{{ url('/configuracion/impuestos/index') }}">Impuestos</a>
                     @endif
                 </div>
             @endif
