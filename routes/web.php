@@ -15,13 +15,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-//rutas productos
-Route::resource('almacen/productos', 'ProductoController');
-Route::post('almacen/productos/search', ['as'=>'almacen/productos/search', 'uses'=>'ProductoController@search']);
+Route::group(['prefix' => 'admin', 'namespace' => 'admin'], function(){
+  Route::resource('clientes', 'ClientesController');
+  Route::resource('marcas', 'MarcasController');
+  Route::resource('producto-categorias', 'ProductoCategoriasController');
+  Route::resource('productos', 'ProductosController');
+  Route::resource('usuarios', 'UsuariosController');
 
-//rutas impuestos
-Route::resource('configuracion/impuestos', 'ImpuestoController');
-Route::post('configuracion/impuestos/search', ['as'=>'configuracion/impuestos/search', 'uses'=>'ImpuestoController@search']);
+  Route::get('pedidos', [
+    'uses' => 'PedidosController@index',
+    'as' => 'pedidos.index',
+  ]);
+});
 
 Auth::routes();
 
